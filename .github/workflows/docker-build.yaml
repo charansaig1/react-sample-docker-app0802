@@ -25,7 +25,7 @@ jobs:
       - name: Build and tag build image
         run: |
           docker build -t node-app:build-latest -f Dockerfile.build .
-          docker tag node-app:build-latest ${{ vars.DOCKER_USERNAME }}/node-app:build-${{ github.sha }} || docker image
+          docker tag node-app:build-latest ${{ vars.DOCKER_USERNAME }}/node-app:build-${{ github.sha }}
           docker image ls
 
       - name: Push build image
@@ -59,14 +59,17 @@ jobs:
           echo "Listing all Docker containers:"
           docker ps -a
 
+      - name: Check logs for dev container
+        run: |
+          docker logs react-sample-docker-app0802_dev_1
+
       - name: Test if app is running
         run: |
           sleep 10  # Wait for containers to start
           curl -v http://localhost:3001 || echo "App not responding on port 3001"
           curl -v http://localhost:3002 || echo "App not responding on port 3002"
 
-
-                - name: Check logs of running containers
-      - run: |
+      - name: Check logs of running containers
+        run: |
           docker logs react-sample-docker-app0802_build_1
           docker logs react-sample-docker-app0802_dev_1
