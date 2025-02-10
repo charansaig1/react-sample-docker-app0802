@@ -64,3 +64,9 @@ jobs:
           sleep 10  # Wait for containers to start
           curl -v http://localhost:3001 || echo "App not responding on port 3001"
           curl -v http://localhost:3002 || echo "App not responding on port 3002"
+
+
+                - name: Check logs of running containers
+      - run: |
+          docker logs react-sample-docker-app0802_build_1
+          docker logs react-sample-docker-app0802_dev_1
