@@ -49,6 +49,7 @@ jobs:
       - name: Build Docker Image
         run: |
           docker build -t charansaig1/react-sample-docker-app10-02:latest -f Dockerfile.build .
+          docker images
 
       - name: Tag Docker Image
         run: |
