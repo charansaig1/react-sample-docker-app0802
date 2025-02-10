@@ -2,15 +2,15 @@ version: '3.8'
 
 services:
   build:
-    image: ${{ vars.DOCKER_USERNAME }}/node-app:build-${{ github.sha }}
+    image: "${DOCKER_USERNAME}/node-app:build-${GITHUB_SHA}"
     ports:
-      - "3001:3000" # Changed port to avoid conflicts
+      - "3001:3000"
     depends_on:
       - dev
 
   dev:
-    image: ${{ vars.DOCKER_USERNAME }}/node-app:dev-${{ github.sha }}
+    image: "${DOCKER_USERNAME}/node-app:dev-${GITHUB_SHA}"
     environment:
-      - REACT_APP_API_URL=http://localhost:3001 # Changed to match new port
+      - REACT_APP_API_URL=http://localhost:3001
     ports:
-      - "3002:3000" # Changed port to avoid conflicts
+      - "3002:3000"

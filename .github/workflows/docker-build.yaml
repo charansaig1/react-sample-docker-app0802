@@ -48,5 +48,8 @@ jobs:
           sudo apt-get install -y docker-compose
 
       - name: Deploy with Docker Compose
+        env:
+          DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
+          GITHUB_SHA: ${{ github.sha }}
         run: |
           docker-compose -f docker-compose-build-dev.yaml up -d
