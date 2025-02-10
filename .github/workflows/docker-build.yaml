@@ -53,3 +53,8 @@ jobs:
           GITHUB_SHA: ${{ github.sha }}
         run: |
           docker-compose -f docker-compose-build-dev.yaml up -d
+
+          - name: Check running Docker containers
+          run: |
+            echo "Listing all Docker containers:"
+            docker ps -a
