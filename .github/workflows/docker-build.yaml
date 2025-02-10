@@ -42,6 +42,11 @@ jobs:
         run: |
           docker push ${{ vars.DOCKER_USERNAME }}/node-app:dev-${{ github.sha }}
 
+      - name: Install Docker Compose
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-compose
+
       - name: Deploy with Docker Compose
         run: |
           docker-compose -f docker-compose-build-dev.yaml up -d
