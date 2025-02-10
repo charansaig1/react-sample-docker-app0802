@@ -26,7 +26,7 @@ jobs:
         run: |
           docker build -t node-app:build-latest -f Dockerfile.build .
           docker tag node-app:build-latest ${{ vars.DOCKER_USERNAME }}/node-app:build-${{ github.sha }} || docker image
-          docker image
+          docker image ls
 
       - name: Push build image
         run: |
@@ -36,7 +36,7 @@ jobs:
         run: |
           docker build -t node-app:dev-latest -f Dockerfile.dev .
           docker tag node-app:dev-latest ${{ vars.DOCKER_USERNAME }}/node-app:dev-${{ github.sha }}
-          docker image
+          docker image ls
 
       - name: Push dev image
         run: |
@@ -54,7 +54,7 @@ jobs:
         run: |
           docker-compose -f docker-compose-build-dev.yaml up -d
 
-          - name: Check running Docker containers
-          run: |
-            echo "Listing all Docker containers:"
-            docker ps -a
+      - name: Check running Docker containers
+        run: |
+          echo "Listing all Docker containers:"
+          docker ps -a
