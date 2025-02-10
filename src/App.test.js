@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders Hello React from Docker', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const textElement = screen.getByText(/Hello React from Docker/i);
+  expect(textElement).toBeInTheDocument();
 });
